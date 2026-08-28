@@ -1,0 +1,11 @@
+{
+  "name": "skill-forge",
+  "owner": { "name": "Shahriar Shabbir" },
+  "plugins": [
+    {
+      "name": "skill-forge",
+      "source": "./",
+      "description": "47 curated engineering skills covering the full SDLC — discovery, spec, agile planning, persona plan-reviews, TDD implementation, design, QA, review, security, release, and multi-agent orchestration."
+    }
+  ]
+}
