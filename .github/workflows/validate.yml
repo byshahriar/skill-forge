@@ -1,0 +1,42 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  skills:
+    name: Skill lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/validate-skills.js
+
+  docs:
+    name: Docs consistency
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/validate-docs.js
+
+  markdown:
+    name: Markdown sanity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check code-fence balance and frontmatter presence
+        run: |
+          set -e; fail=0
+          for f in skills/*/SKILL.md; do
+            c=$(grep -c '^```' "$f" || true)
+            if [ $((c % 2)) -ne 0 ]; then echo "ODD FENCES: $f"; fail=1; fi
+            head -1 "$f" | grep -q '^---$' || { echo "NO FRONTMATTER: $f"; fail=1; }
+          done
+          exit $fail
