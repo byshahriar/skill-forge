@@ -1,0 +1,7 @@
+description = "Ship: merge base, test, version, changelog, PR"
+
+prompt = """
+Invoke the release skill.
+
+Run the ship mechanics in order: pre-flight, merge the base branch BEFORE tests, full test suite and quality gates, version bump, changelog from the diff, bisectable commits, push, PR with rollback note. Stop on any red gate. Offer canary-watch after deploy.
+"""

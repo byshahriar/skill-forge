@@ -1,0 +1,7 @@
+description = "Break approved work into small, atomic, verifiable tasks"
+
+prompt = """
+Invoke the plan skill.
+
+Break the current spec or request into small, independently verifiable tasks with explicit acceptance criteria and dependency order. Flag tasks that are too big and split them. Offer ceo-review / eng-review before implementation for significant plans.
+"""

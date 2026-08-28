@@ -1,0 +1,10 @@
+description = "Design work — system, concepts, or live-UI QA"
+
+prompt = """
+Route to the right design skill:
+- No design system yet, or fonts/colors/direction undecided -> design-system
+- "Show me options / directions" -> design-concepts
+- Live UI needs a designer's-eye audit or polish -> design-qa
+
+State which one you chose and why, then run it.
+"""
