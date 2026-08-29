@@ -15,7 +15,7 @@ Pick Cursor when the installer asks which agents to target — it writes the ski
 
 ```markdown
 ## Skills
-Skill Forge is installed at <path>/skills — 47 engineering skills, one directory each.
+Skill Forge is installed at <path>/skills — 53 engineering skills, one directory each.
 Before starting work, read <path>/skills/orchestrator/SKILL.md for the routing table
 and mandatory hops. Non-negotiables: tdd for logic changes, debug's root-cause rule
 for bugs, verify's completion gate before claiming done, code-review before merge.

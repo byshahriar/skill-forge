@@ -1,6 +1,6 @@
 # Copilot Instructions — Skill Forge
 
-This repository is a suite of 47 agent skills (one directory per skill under `skills/`, each with a `SKILL.md`).
+This repository is a suite of 53 agent skills (one directory per skill under `skills/`, each with a `SKILL.md`).
 
 When working in this repo:
 

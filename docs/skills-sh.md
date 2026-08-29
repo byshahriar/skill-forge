@@ -6,7 +6,7 @@ Skill Forge is fully compatible with the open `skills` CLI and the skills.sh reg
 
 The CLI discovers skills by scanning a GitHub repo for `skills/<name>/SKILL.md`. Skill Forge guarantees:
 
-- **Layout** — all 47 skills live at `skills/<name>/SKILL.md`, one directory per skill
+- **Layout** — all 53 skills live at `skills/<name>/SKILL.md`, one directory per skill
 - **Frontmatter** — every skill carries the registry-spec fields: `name` (kebab-case, ≤64 chars, matches the directory), `description` (trigger-focused "Use when…", ≤1024 chars), `license: MIT`
 - **Self-containment** — a per-skill install (`--skill <name>`) copies only that skill's directory, so every skill vendors its own `references/`; nothing reaches outside its folder
 - **No workflow in descriptions** — descriptions state *when* to load, never *how* the skill works (see `skills/skill-authoring/SKILL.md` for why)
@@ -29,7 +29,7 @@ Before pushing a release:
 
 1. `node scripts/validate-skills.js` — zero errors
 2. `node scripts/validate-docs.js` — zero errors
-3. Smoke-test discovery from the working tree: `npx skills add ./ --list` should list all 47 skills
+3. Smoke-test discovery from the working tree: `npx skills add ./ --list` should list all 53 skills
 4. After the repo is public: `npx skills add byshahriar/skill-forge --list` from a clean machine
 
 Once the repo is public on GitHub, it is installable immediately — the registry needs no submission step; skills.sh indexes repos as people install from them.

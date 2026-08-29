@@ -16,7 +16,7 @@ Pick Copilot when the installer asks — it targets the Copilot CLI / coding-age
 ```markdown
 # Instructions
 
-Skill Forge is installed at ./skills — 47 engineering skills.
+Skill Forge is installed at ./skills — 53 engineering skills.
 Read ./skills/orchestrator/SKILL.md for the routing table and mandatory hops.
 Non-negotiables: tdd (failing test before logic), debug (root cause before fixes),
 verify (fresh evidence before claiming done), code-review before merge.

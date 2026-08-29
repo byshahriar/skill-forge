@@ -1,10 +1,10 @@
 # Skill Forge — Agent Guide
 
-This repository is a suite of 47 agent skills covering the software development lifecycle. If you are an AI agent working in a project that has Skill Forge installed, this file tells you how to use it.
+This repository is a suite of 53 agent skills covering the software development lifecycle. If you are an AI agent working in a project that has Skill Forge installed, this file tells you how to use it.
 
 ## How to pick a skill
 
-Load `skills/orchestrator/SKILL.md` — it contains the full routing table (request → skill) and the proven lifecycle sequences. Short version:
+Load `skills/orchestrator/SKILL.md` — it contains the full routing table (request → skill) and the proven lifecycle sequences. Every skill is self-contained: use one alone when the task is one skill big, chain them when work spans phases — sequences are composition patterns, not dependencies. Short version:
 
 - **Idea or "is this worth building?"** → `discovery`
 - **Turn intent into a spec** → `specify`; break it down → `plan`
@@ -13,6 +13,7 @@ Load `skills/orchestrator/SKILL.md` — it contains the full routing table (requ
 - **Any logic change or bug fix** → `tdd` (test first, always)
 - **Something broken** → `debug` (root cause before fixes — iron law)
 - **Before merge** → `code-review`; **before prod** → `release`; **after deploy** → `canary-watch`
+- **Unfamiliar domain/tech** → `research`; unfamiliar code in this repo → `code-research`
 - **Stuck on a hard problem** → `problem-solving` (dispatch by stuck-type)
 - **Risky/production session** → `guardrails` first
 
@@ -39,6 +40,8 @@ These are not suggestions — they fire automatically on their trigger:
 | About to claim work is complete | `verify` — the Completion Gate |
 | Before merge or PR | `code-review`; before push — `release`'s Push Gate |
 | Stuck (circling, complexity spiraling, forced assumptions) | `problem-solving` — dispatch by stuck-type |
+| Production down or degraded for real users | `incident-response` — mitigate before diagnosing |
+| Migration against a table with real data | `database` — expand/contract, tested down path |
 
 ## Completion status protocol
 
@@ -54,8 +57,8 @@ Never report DONE while any checklist item in the skill's Verification section i
 ## Repo layout
 
 ```
-skills/<name>/SKILL.md      # 47 skills, one dir each, self-contained
-commands/*.toml             # 12 slash commands
+skills/<name>/SKILL.md      # 53 skills, one dir each, self-contained
+commands/*.toml             # 19 slash commands
 references/                 # shared checklists (also vendored per-skill where used)
 scripts/validate-skills.js  # per-skill lint — run before committing skill changes
 scripts/validate-docs.js    # repo consistency: README/orchestrator/counts/commands

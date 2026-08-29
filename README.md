@@ -1,6 +1,6 @@
 # Skill Forge
 
-**47 engineering skills for AI coding agents — the full software development lifecycle, from idea to production.**
+**53 engineering skills for AI coding agents — the full software development lifecycle, from idea to production.**
 
 Skill Forge gives your agent the workflows, quality gates, and judgment that senior engineers apply at every phase of building software: validating ideas before building, specifying before coding, reviewing plans from four expert perspectives, implementing test-first, auditing design and security, and shipping with rollback discipline. Every skill is portable, self-contained, and written in one consistent anatomy.
 
@@ -32,7 +32,7 @@ flowchart LR
 **Any agent, one command** — via the open `skills` CLI (installs into Claude Code, Cursor, Codex, Copilot, Cline, and 70+ more):
 
 ```bash
-npx skills add byshahriar/skill-forge              # install all 47 skills
+npx skills add byshahriar/skill-forge              # install all 53 skills
 npx skills add byshahriar/skill-forge --list       # browse before installing
 npx skills add byshahriar/skill-forge --skill tdd  # just one skill
 ```
@@ -89,6 +89,8 @@ The repo ships agent-facing entry points for each: [AGENTS.md](AGENTS.md) (Codex
 | [tdd](skills/tdd/SKILL.md) | Strict red-green-refactor with hard gates; testing iron laws; no arbitrary waits |
 | [implement](skills/implement/SKILL.md) | One verified vertical slice at a time |
 | [api-design](skills/api-design/SKILL.md) | Interfaces designed before implementation |
+| [database](skills/database/SKILL.md) | Schema design, zero-downtime migrations, safe backfills, query performance |
+| [llm-features](skills/llm-features/SKILL.md) | Eval-driven AI features — golden sets, measured prompt iteration, non-determinism handling |
 | [ui-engineering](skills/ui-engineering/SKILL.md) | Frontend engineering standards — state, accessibility, performance |
 | [standards](skills/standards/SKILL.md) | Decide the quality bar once, enforce it everywhere |
 | [verify](skills/verify/SKILL.md) | Distrust green checkmarks — the completion gate: fresh evidence before any claim |
@@ -110,7 +112,8 @@ The repo ships agent-facing entry points for each: [AGENTS.md](AGENTS.md) (Codex
 | [debug](skills/debug/SKILL.md) | Systematic debugging — root-cause protocol, pattern table, 3-strike rule |
 | [web-qa](skills/web-qa/SKILL.md) | Browser QA — DevTools workflow plus the test→fix→verify sweep |
 | [perf](skills/perf/SKILL.md) | Measure-first optimization plus regression benchmarking |
-| [code-health](skills/code-health/SKILL.md) | Weighted quality dashboard with history and trends |
+| [incident-response](skills/incident-response/SKILL.md) | Outage response — triage and severity, mitigate before diagnosing, comms cadence, blameless postmortem |
+| [code-health](skills/code-health/SKILL.md) | Weighted quality dashboard with trends — plus the agent-environment health lane |
 
 ### Review
 | Skill | What it does |
@@ -128,16 +131,19 @@ The repo ships agent-facing entry points for each: [AGENTS.md](AGENTS.md) (Codex
 | [git-workflow](skills/git-workflow/SKILL.md) | Branching, commits, versioning, worktree isolation, branch finishing |
 | [observability](skills/observability/SKILL.md) | Logs, metrics, traces, alerts as first-class scope |
 | [modernization](skills/modernization/SKILL.md) | Deprecation and migration playbooks |
+| [resilience](skills/resilience/SKILL.md) | Timeouts, retries with backoff, circuit breakers, idempotency, graceful degradation |
 
 ### Docs, Safety & Orchestration
 | Skill | What it does |
 |---|---|
-| [docs](skills/docs/SKILL.md) | ADRs, API docs, READMEs — plus generate-from-scratch and post-ship updates |
+| [docs](skills/docs/SKILL.md) | ADRs, API docs, READMEs — plus prose quality, reader testing, and post-ship updates |
 | [guardrails](skills/guardrails/SKILL.md) | Careful mode (destructive-command warnings) + edit boundaries |
 | [orchestrator](skills/orchestrator/SKILL.md) | Routes any request to the right skill; the lifecycle map |
 | [multi-agent](skills/multi-agent/SKILL.md) | When and how to fan out subagents — patterns, subagent-driven plan execution, anti-patterns |
 | [problem-solving](skills/problem-solving/SKILL.md) | Getting unstuck — simplification cascades, inversion, forced analogies, meta-patterns, scale testing |
 | [skill-authoring](skills/skill-authoring/SKILL.md) | TDD for process docs — baseline, pressure-test, and loophole-proof new skills |
+| [research](skills/research/SKILL.md) | Six-phase research workflow — primary sources, distillation test, contradiction-safe synthesis |
+| [mcp-development](skills/mcp-development/SKILL.md) | High-quality MCP servers — tool design for agents, actionable errors, agent-driven evaluations |
 
 ## Commands
 
@@ -155,6 +161,13 @@ The repo ships agent-facing entry points for each: [AGENTS.md](AGENTS.md) (Codex
 | `/design` | design-system / design-concepts / design-qa | Design work, routed |
 | `/standup` | standup | Daily update from real activity |
 | `/retro` | retrospective | Evidence-based retro |
+| `/discover` | discovery | Validate an idea — three-paths classification, design doc |
+| `/debug` | debug | Root cause before any fix |
+| `/docs` | docs | ADRs, READMEs, runbooks — reader-tested |
+| `/research` | research | Deep-dive an unfamiliar domain |
+| `/health` | code-health | Code + agent-environment health dashboard |
+| `/stuck` | problem-solving | Dispatch the right unstucking technique |
+| `/incident` | incident-response | Production incident — triage, mitigate, comms, postmortem |
 
 ## Skill Anatomy
 
