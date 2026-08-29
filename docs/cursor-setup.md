@@ -3,7 +3,7 @@
 ## Option 1: skills CLI (fastest)
 
 ```bash
-npx skills add <owner>/skill-forge
+npx skills add byshahriar/skill-forge
 ```
 
 Pick Cursor when the installer asks which agents to target — it writes the skills where Cursor discovers them. Re-run with `--list` to browse or `--skill <name>` for a single skill.

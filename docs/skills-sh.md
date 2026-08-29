@@ -16,9 +16,9 @@ CI enforces all of this: `scripts/validate-skills.js` checks the frontmatter con
 ## Installing (consumer side)
 
 ```bash
-npx skills add <owner>/skill-forge              # everything
-npx skills add <owner>/skill-forge --list       # browse first
-npx skills add <owner>/skill-forge --skill tdd  # one skill, self-contained
+npx skills add byshahriar/skill-forge              # everything
+npx skills add byshahriar/skill-forge --list       # browse first
+npx skills add byshahriar/skill-forge --skill tdd  # one skill, self-contained
 ```
 
 The CLI targets 70+ agents (Claude Code, Cursor, Codex, Copilot, Cline, …) and asks which to install into. Per-agent notes: [cursor-setup.md](cursor-setup.md) · [codex-setup.md](codex-setup.md) · [copilot-setup.md](copilot-setup.md).
@@ -30,7 +30,7 @@ Before pushing a release:
 1. `node scripts/validate-skills.js` — zero errors
 2. `node scripts/validate-docs.js` — zero errors
 3. Smoke-test discovery from the working tree: `npx skills add ./ --list` should list all 47 skills
-4. After the repo is public: `npx skills add <owner>/skill-forge --list` from a clean machine
+4. After the repo is public: `npx skills add byshahriar/skill-forge --list` from a clean machine
 
 Once the repo is public on GitHub, it is installable immediately — the registry needs no submission step; skills.sh indexes repos as people install from them.
 

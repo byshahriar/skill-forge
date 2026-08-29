@@ -3,7 +3,7 @@
 ## Option 1: skills CLI (fastest)
 
 ```bash
-npx skills add <owner>/skill-forge
+npx skills add byshahriar/skill-forge
 ```
 
 Pick Copilot when the installer asks — it targets the Copilot CLI / coding-agent discovery paths.

@@ -3,7 +3,7 @@
 ## Option 1: skills CLI (fastest)
 
 ```bash
-npx skills add <owner>/skill-forge
+npx skills add byshahriar/skill-forge
 ```
 
 Pick Codex when the installer asks — it places skills where the Codex CLI discovers them.

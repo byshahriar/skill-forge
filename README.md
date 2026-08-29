@@ -19,9 +19,9 @@ Skill Forge gives your agent the workflows, quality gates, and judgment that sen
 **Any agent, one command** — via the open `skills` CLI (installs into Claude Code, Cursor, Codex, Copilot, Cline, and 70+ more):
 
 ```bash
-npx skills add <owner>/skill-forge              # install all 47 skills
-npx skills add <owner>/skill-forge --list       # browse before installing
-npx skills add <owner>/skill-forge --skill tdd  # just one skill
+npx skills add byshahriar/skill-forge              # install all 47 skills
+npx skills add byshahriar/skill-forge --list       # browse before installing
+npx skills add byshahriar/skill-forge --skill tdd  # just one skill
 ```
 
 Every skill is **self-contained** — per-skill `references/` travel with a single-skill install; nothing breaks when you cherry-pick. Full registry compatibility details: [docs/skills-sh.md](docs/skills-sh.md).
@@ -29,7 +29,7 @@ Every skill is **self-contained** — per-skill `references/` travel with a sing
 **Claude Code plugin:**
 
 ```
-/plugin marketplace add <owner>/skill-forge
+/plugin marketplace add byshahriar/skill-forge
 /plugin install skill-forge@skill-forge
 ```
 

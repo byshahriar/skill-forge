@@ -4,12 +4,12 @@
 
 **Skills CLI (any of 70+ agents):**
 ```bash
-npx skills add <owner>/skill-forge
+npx skills add byshahriar/skill-forge
 ```
 
 **Claude Code plugin:**
 ```
-/plugin marketplace add <owner>/skill-forge
+/plugin marketplace add byshahriar/skill-forge
 /plugin install skill-forge@skill-forge
 ```
 
