@@ -179,6 +179,10 @@ Verify before using in production.
 
 Honesty about what you couldn't verify is more valuable than false confidence.
 
+## Beyond This Repo
+
+This skill reads code you're building on. When the unknown is a whole domain, protocol, or ecosystem — multiple external sources, not one codebase — that's `research` (six-phase workflow, primary sources, synthesis).
+
 ## Common Rationalizations
 
 | Rationalization | Reality |

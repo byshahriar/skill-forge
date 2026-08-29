@@ -107,6 +107,22 @@ Confirm the final summary with the user, flagging any decision that used a defau
 4. **Anti-convergence across sessions.** Never propose the same choices twice without explicit justification — convergence across generations is slop.
 5. **Accept the user's final choice.** Nudge on coherence, never refuse to write the file.
 
+## Anti-Default Calibration
+
+Generated design clusters around a small set of recognizable defaults. Naming them is the defense — these are legitimate looks *for some briefs*, but they appear regardless of subject, which makes them defaults rather than choices:
+
+1. Warm cream background (~#F4F1EA) + high-contrast serif display + terracotta accent
+2. Near-black background + one bright acid-green or vermilion accent
+3. Broadsheet layout: hairline rules, zero border-radius, dense newspaper columns
+
+Where the brief pins a direction, follow it exactly — even if it asks for one of these. Where the brief leaves an axis free, **don't spend that freedom on a default**. The self-test: work through a similar brief mentally — if you'd arrive at the same design, it's a default, not a decision for *this* product. Revise that part and say what changed.
+
+**The signature element.** Every design gets remembered for at most one thing — choose it deliberately. Spend your boldness in one place: the signature element is the memorable risk, and everything around it stays quiet and disciplined. Cut any decoration that doesn't serve the brief (before leaving the house, remove one accessory). Not taking any risk is itself a risk — a design with no signature is template output with better taste.
+
+**Ground it in the subject.** Distinctive choices come from the product's own world — its materials, instruments, vernacular. If the brief doesn't pin down the subject, pin it yourself before designing: one concrete subject, its audience, the page's single job. The hero is a thesis: open with the most characteristic thing in the subject's world, and question inherited devices (numbered 01/02/03 markers only when the content genuinely is a sequence).
+
+**Quality floor, unannounced:** responsive to mobile, visible keyboard focus, `prefers-reduced-motion` respected — built in, not bragged about.
+
 ## Common Rationalizations
 
 | Excuse | Reality |

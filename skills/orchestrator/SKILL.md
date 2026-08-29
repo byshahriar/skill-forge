@@ -60,6 +60,12 @@ The map of the skill-forge suite: what each skill does, when it fires, and the p
 | Split work across parallel agents | `multi-agent` |
 | Stuck — complexity spiraling, forced assumptions, need a breakthrough | `problem-solving` |
 | Create or fix an agent skill | `skill-authoring` |
+| Unfamiliar domain or tech — "research this", "deep-dive" | `research` |
+| Build or fix an MCP server / expose an API to agents | `mcp-development` |
+| Production is down / alert fired / users affected | `incident-response` |
+| Schema change, migration, backfill, slow query | `database` |
+| Timeouts, retries, circuit breakers, failure design | `resilience` |
+| Build an AI/LLM-powered feature, prompt keeps regressing | `llm-features` |
 
 ## Lifecycle Sequences
 
@@ -83,7 +89,19 @@ Most work doesn't need the whole road. Cut from the front, never the back: skipp
 
 **Risky/production session:** `guardrails` first, then whatever the work is.
 
+**Unfamiliar territory:** external domain/tech → `research` → `specify`; this repo's code → `code-research` → the work.
+
+**Agent tooling:** `api-design` (fundamentals) → `mcp-development` (agent-facing inversions) → `tdd` → `code-review` → `release`.
+
+**Production incident:** `incident-response` (mitigate → diagnose → comms) → `debug` (root cause) → `resilience` / `observability` (so it fails better next time) → postmortem actions to `backlog-refinement`.
+
+**Data change:** `database` (design + expand/contract plan) → `eng-review` for risky migrations → `implement` → `canary-watch` on the deploy.
+
+**AI feature:** `llm-features` (evals first) → `security` (LLM section) → `resilience` (the model is a network dependency) → `release`.
+
 **Stuck mid-anything:** `problem-solving` (dispatch by stuck-type) — unless code is misbehaving, which is `debug`.
+
+**Standalone or grouped — both are first-class.** Every skill is self-contained and works invoked alone; the sequences above are composition patterns, not dependencies. A skill's hand-off pointers ("then consider X") are offers, not requirements — take the single skill when the task is one skill big, chain when the work spans phases.
 
 ## Mandatory Hops
 
@@ -97,6 +115,8 @@ Some skills aren't routed by request — they fire automatically on their trigge
 | About to claim "done / fixed / passing" | `verify` — the Completion Gate |
 | Before merge or PR | `code-review`; before push — `release`'s Push Gate |
 | Stuck and circling | `problem-solving` — dispatch by stuck-type |
+| Production down or degraded for real users | `incident-response` — mitigate before diagnosing |
+| Migration against a table with real data | `database` — expand/contract, tested down path |
 
 Routing answers "what did the user ask for?"; mandatory hops answer "what does this moment require regardless?" Both apply.
 

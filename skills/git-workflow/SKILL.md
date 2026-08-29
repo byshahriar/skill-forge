@@ -14,6 +14,8 @@ Git is your safety net. Treat commits as save points, branches as sandboxes, and
 
 Always. Every code change flows through git.
 
+**When NOT to use:** **When NOT to use as the primary skill:** the mechanics of a release (versioning, changelog, PR) belong to `release`; this skill covers the day-to-day git discipline underneath it.
+
 ## Core Principles
 
 ### Trunk-Based Development (Recommended)

@@ -17,7 +17,7 @@ A retrospective grounded in evidence, not memory. It mines the repo (and PR/issu
 - Preparing a status update or demo summary from real activity
 - Diagnosing "we feel busy but nothing ships"
 
-**When NOT to use:** Post-incident analysis (blameless postmortem is its own discipline — see `root-cause-analysis`); performance evaluation of individuals — this data measures activity, not value, and must not be weaponized.
+**When NOT to use:** Post-incident analysis (blameless postmortem is its own discipline — see `debug` for the root-cause method); performance evaluation of individuals — this data measures activity, not value, and must not be weaponized.
 
 ## Step 1: Gather
 
@@ -76,6 +76,27 @@ A retro document (chat summary + optional saved file):
 ## Shipped            ## Metrics table        ## Patterns & flags
 ## Trends             ## Went well / Didn't   ## Changes (max 3, owned)
 ```
+
+## Worked Example: Data → Insight → Owned Change
+
+A 7-day window produced these numbers: 23 commits, 4 PRs merged, fix ratio **61%** (14 fix / 7 feat / 2 chore), hotspot `checkout/payment.ts` changed 7 times, one 41-commit-day followed by two zero-days, PR sizes: three small, one at 1,840 LOC.
+
+The retro conversation those numbers force — which memory alone would never surface:
+
+- **Fix ratio 61% + one hotspot** → "9 of the 14 fixes touched `payment.ts`. Went-wrong: we shipped the new payment flow without the provider-timeout tests we said we'd write." Anchored, specific, nobody's memory required.
+- **The 1,840-LOC PR** → it sat in review for 3 days and produced 2 of this week's fixes. Went-wrong: batch size, not the author.
+- **41-commit spike + two dead days** → the deploy freeze compressed the week into one day; sustainability flag, not a productivity trophy.
+- **Ship of the week** → the retry queue: shipped Tuesday, zero fixes since, absorbed a provider outage on Thursday silently. Celebrated specifically.
+
+Changes (≤3, owned, checkable next retro):
+
+| Change | Owner | Check at next retro |
+|---|---|---|
+| Payment-path PRs require the timeout test suite green | Priya | fixes touching `payment.ts` < 3 |
+| PRs over 500 LOC get split or pre-agreed | Marcus | large-PR count = 0 |
+| *(deliberately only two — last retro's third item was never done)* | | |
+
+The unfinished item from last cycle gets asked about *first* next time — that's the loop that makes retros compound instead of repeat.
 
 ## Common Rationalizations
 

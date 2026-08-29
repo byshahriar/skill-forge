@@ -82,6 +82,20 @@ Examples: "handle errors as they occur" works at normal scale; at a billion even
 
 The game costs ten minutes of thought and regularly finds the flaw production would have found at 3am.
 
+## Worked Example: A Simplification Cascade
+
+Symptom: a notification system with five delivery implementations — email, SMS, push, in-app, webhook — each with its own retry logic, template rendering, preference checks, and rate limiting. Every new channel copies ~400 lines and every preference bug gets fixed five times. Dispatch table says: *same thing implemented 5+ ways → simplification cascade.*
+
+**List the variations:** all five do: check preferences → render template → apply rate limit → deliver → record result → retry on failure.
+
+**Find the essence:** only *deliver* actually differs. Everything else is the same pipeline with the same shape.
+
+**Extract:** one `NotificationPipeline` (preferences, rendering, rate limit, retry, recording) + five thin `Transport` implementations (~30 lines each: "given rendered payload, deliver it").
+
+**Test every case fits:** email needs attachments — payload field, fits. SMS needs length truncation — a render option, fits. Webhook needs signing — transport-local concern, fits. In-app has no retry — retry policy becomes a transport-declared parameter, fits. **All five fit cleanly** → real cascade, not a sixth implementation. Result: ~1,600 lines deleted, preference bugs now have one home, and a sixth channel costs 30 lines.
+
+Had push notifications required a fundamentally different flow (say, delivery receipts mutating the pipeline), that case would have failed the fit test — and the honest answer would be a pipeline for four plus one documented exception, not a forced abstraction.
+
 ## Common Rationalizations
 
 | Excuse | Reality |

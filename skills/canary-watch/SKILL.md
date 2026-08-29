@@ -65,7 +65,7 @@ Evidence:  .canary/screenshots/checkout-3.png
 Baseline:  0 errors    Current: 1 error (persisted 2 checks)
 ```
 
-Options: **A)** investigate now (stop monitoring, switch to `debug`) · **B)** keep watching (might be transient) · **C)** rollback the deploy · **D)** dismiss as false positive. Recommend by severity — CRITICAL leans rollback-or-investigate, never "keep watching".
+Options: **A)** investigate now — if users are already affected this is an incident: switch to `incident-response` (mitigate first), otherwise `debug` · **B)** keep watching (might be transient) · **C)** rollback the deploy · **D)** dismiss as false positive. Recommend by severity — CRITICAL leans rollback-or-investigate, never "keep watching".
 
 ## Phase 4: Health Report
 

@@ -19,6 +19,8 @@ Security-first development practices for web applications. Treat every external 
 - Adding file uploads, webhooks, or callbacks
 - Handling payment or PII data
 
+**When NOT to use:** General code quality review — `code-review` (which calls this skill for its security axis). Designing failure behavior — `resilience`. Building an AI feature (its quality and eval discipline) — `llm-features`; this skill covers securing one. Restricting an agent session destructively — `guardrails`.
+
 ## Process: Threat Model First
 
 Controls bolted on without a threat model are guesses. Before hardening, spend five minutes thinking like an attacker:

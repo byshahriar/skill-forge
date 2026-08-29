@@ -19,6 +19,8 @@ Systematic debugging with structured triage. When something breaks, stop adding 
 - An error appears in logs or console
 - Something worked before and stopped working
 
+**When NOT to use:** Production is actively down or degraded for users — `incident-response` first (mitigate, then come back here). Stuck on assumptions rather than evidence — `problem-solving`. Systematic pre-merge quality checks — `code-review`.
+
 ## The Stop-the-Line Rule
 
 When anything unexpected happens:
@@ -262,7 +264,13 @@ Add logging only when it helps. Remove it when done.
 
 ## The Root-Cause Protocol
 
-**Iron law: no fixes without root-cause investigation first.** Fixing symptoms creates whack-a-mole debugging; every fix that skips the root cause makes the next bug harder to find.
+The iron law:
+
+```
+NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST
+```
+
+Fixing symptoms creates whack-a-mole debugging; every fix that skips the root cause makes the next bug harder to find.
 
 **Pattern analysis.** Before hypothesizing, check the signature against known shapes:
 
@@ -279,7 +287,7 @@ Check git history for prior fixes in the same area — **recurring bugs in the s
 
 **Hypothesis testing.** Confirm before fixing: add a log/assertion at the suspected cause, run the reproduction, check the evidence matches. Wrong hypothesis → back to evidence-gathering, not to the next guess.
 
-**The 3-strike rule.** Three failed hypotheses = STOP. This is likely architectural, not a simple bug. Options: continue with a genuinely new hypothesis (state it), escalate for human review, or instrument the area and catch it next occurrence.
+**The 3-strike rule.** Three failed hypotheses = STOP. This is likely architectural, not a simple bug. Options: continue with a genuinely new hypothesis (state it), escalate for human review, or instrument the area and catch it next occurrence. If the stuckness feels like assumptions rather than evidence, `problem-solving`'s techniques (inversion, simplification cascade) apply before hypothesis #4.
 
 **Blast-radius gate.** A bug fix touching more than 5 files is a flag: either the root cause genuinely spans them (say why), or you're fixing at the wrong layer.
 
@@ -313,6 +321,20 @@ Feed the root cause into `knowledge-base` — future investigations in the same 
 Single validation says "we fixed the bug"; layered validation says "this bug can't come back".
 
 **When repeated fixes fail, suspect the architecture.** If each fix reveals a new problem in a different place, or every fix demands "massive refactoring" — that's not a failed hypothesis, that's a wrong design. Stop patching, name the structural issue, and take it to the user before attempting another fix.
+
+## The Runtime Evidence Ladder
+
+Before claiming any bug fixed, climb every applicable rung — each is a different kind of proof:
+
+1. **Source trace** — name the exact function, state transition, and condition that produces the symptom
+2. **Deterministic repro** — the smallest command, fixture, or UI path that triggers it
+3. **Runtime state** — inspect the state proving the path was reached: queues, DB rows, caches, generated outputs, logs
+4. **Build/test** — the narrow test exercising the fix passes
+5. **Real runtime check** — for UI, rendering, native-app, or generated-artifact bugs: open the actual app/page/artifact and verify the visible result. **Compile-only is never enough for visual bugs.**
+
+If a rung is impossible in your environment, say why and hand off the exact screen, command, or artifact for someone to verify — don't silently skip it.
+
+**The user-probe pattern.** When the bug lives in the reporter's environment and won't reproduce locally, the next artifact is a **read-only probe they can paste and run** — not another hypothesis. The probe prints the environment, the disputed measurement, and the state your hypothesis turns on; nothing that could carry a secret or private path. Assume none of your layout: their install method, paths, locale, and versions all differ — discover, don't hardcode. One command to run, one block to paste back. Two rounds of "could you check whether…" without a probe is the failure shape this replaces.
 
 ## Common Rationalizations
 

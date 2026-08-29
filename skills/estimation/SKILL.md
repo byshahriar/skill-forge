@@ -65,6 +65,24 @@ Never silently absorb a blown estimate — the whole system calibrates on honest
 
 At `retrospective` time, compare estimates to actuals *by category, not by story*: which uncertainty flags predicted blowups? Which anchor stories drifted? Recalibrate anchors quarterly. Velocity (points completed per sprint, averaged over 3+ sprints) is a *planning input*, never a performance metric — the moment it's a target, the points inflate and the signal dies.
 
+## Worked Example: A Divergent Estimate
+
+Story: *"Add CSV export to the transactions table."* Acceptance criteria exist. Independent votes come back: **3, 3, 13**.
+
+Don't average to a 6. The 13 explains:
+
+> "Last time we touched export, the streaming path corrupted non-ASCII characters, and transactions can be 2M rows — you can't buffer that in memory. There's no test coverage on that path."
+
+The 3s explain:
+
+> "The reporting table already has CSV export — I assumed we'd reuse `exportToCsv()`."
+
+Now the real conversation: does `exportToCsv()` stream? Nobody knows. **That's a spike** — timebox 2 hours: "determine whether the existing export helper streams and handles UTF-8; output is a yes/no and a code pointer." The story leaves the sprint queue as 🔍 until the spike lands.
+
+Spike result: it streams, but encodes Latin-1. Re-vote: **5, 5, 5** — reuse the streamer, fix the encoding, add the missing tests. The uncertainty note reads: *"5 assuming exportToCsv's encoding fix is local; if it's shared with reporting, re-estimate — blast radius doubles."*
+
+What made this work: the divergence was surfaced instead of averaged, the unknown became a cheap spike instead of a mid-sprint surprise, and the final estimate carries its own re-estimation trigger.
+
 ## Common Rationalizations
 
 | Excuse | Reality |

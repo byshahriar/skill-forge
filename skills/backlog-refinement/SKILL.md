@@ -60,6 +60,20 @@ Split: A → A1, A2          Pruned: N closed (list with one-line reasons)
 Priority changes: [item: old → new position, why]
 ```
 
+## Worked Example: One Refinement Pass
+
+Five items from the top of a real-shaped backlog, and what happens to each:
+
+| Item | Finding | Action |
+|---|---|---|
+| "Fix login" (8 months old, no detail) | Nobody can say which login bug; auth was rewritten since | **Close**: "predates auth rewrite; refile with repro if still seen" |
+| "Export to CSV" (sized 13) | Too big to trust; hides an encoding unknown | **Split + spike**: 2h spike on the existing exporter, then re-size |
+| "Add rate limiting to public API" | Clear, but blocks nothing and nothing blocks it | Rank by value÷effort → position 6; note it **unblocks** the partner-API item → bump to 3 |
+| "Improve dashboard performance" | Not ready: no metric, no target | **Needs owner input**: "which view, measured how, target number?" — routed to the reporter, stays out of the ready zone |
+| "Migrate off library X" + "Replace X with Y" + "X deprecation warnings" | Three fragments of one need | **Merge** into one item with the clearest framing; close the other two with links |
+
+Resulting report: `Ready: 4 items (13 pts) · Fixed inline: 1 · Needs input: 1 (question attached) · Split: 1→spike+story · Pruned: 3 closed · Priority change: rate-limiting 6→3 (unblocker)`. Fifteen minutes of refinement; sprint planning next week starts from plannable items instead of archaeology.
+
 ## Common Rationalizations
 
 | Excuse | Reality |

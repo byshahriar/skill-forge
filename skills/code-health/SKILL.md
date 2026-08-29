@@ -1,6 +1,6 @@
 ---
 name: code-health
-description: Runs the project's quality tooling — typecheck, lint, tests, dead-code, shell lint — scores each category, and presents a weighted health dashboard with trends and recommendations. Use when asked "how healthy is this codebase", for a periodic quality check, before a big refactor, or when quality feels like it's drifting and nobody has numbers.
+description: Runs the project quality tooling — typecheck, lint, tests, dead-code, shell lint — scores each category, and presents a weighted health dashboard with trends, plus an agent-environment health lane. Use when asked "how healthy is this codebase", for a periodic quality check, before a big refactor, when quality feels like it is drifting, or when agent instructions, hooks, or MCP config may have rotted.
 license: MIT
 ---
 
@@ -86,6 +86,28 @@ Rank by score impact per effort:
 3. Structural — the fix that changes the slope, not the point (e.g. adding typecheck to CI so the score can't regress silently)
 
 Offer to fix the quick wins immediately; hand structural items to `refactor`, `tdd`, or `ci-cd` as appropriate.
+
+## Agent Environment Health
+
+Codebases now have a second health surface: the **agent environment** — instruction files, permissions, hooks, MCP servers, skills, and memory. It drifts and rots exactly like code, and no ordinary linter watches it. Audit it as a second lane alongside code health:
+
+**Evidence basis first.** Don't grade by inventory (file counts, skill counts, instruction length are informational only). Grade against four evidence classes:
+
+| Evidence | Question |
+|---|---|
+| **Risk** | Which paths can lose data, spend money, publish, or create hard-to-reverse state? |
+| **Non-obvious constraints** | Which stable decisions can't be recovered cheaply from the code — and can the agent actually reach them when relevant? |
+| **Failure evidence** | Which repeated user corrections, fix-chains, stale artifacts, or hollow verifiers prove a *current* gap? |
+| **Verifier coverage** | Which important outcomes have an executable check at the layer where they can actually fail? |
+
+**The lane's checks:**
+- **Instruction drift** — CLAUDE.md/AGENTS.md claims vs reality: commands that no longer exist, conventions the code stopped following, contradictions between global and project instructions
+- **Constraint reachability** — critical "don't do X" rules buried where the agent won't see them when X comes up
+- **Verifier surfaces** — declared test/lint/build commands that actually run and actually fail when they should (a verifier that always passes is worse than none)
+- **Hooks & MCP** — configured hooks that fire, MCP servers that respond (one harmless call per server: live yes/no), permission settings that deny credential paths and pipe-to-shell
+- **Memory/durable docs** — stale entries, private paths leaked into shared instructions, oversized always-loaded context
+
+**Posture rules:** start with a summary pass and escalate to a deep audit deliberately (deep audits cost real tokens — say so before spending them). The audit is **report-only**: a health check authorizes read-only probes, never running project tests, builds, or fixes without explicit approval. Treat "tool unavailable" as insufficient data, not a finding.
 
 ## Common Rationalizations
 

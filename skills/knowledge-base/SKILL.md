@@ -69,6 +69,33 @@ For every entry:
 
 Present flagged entries for the user's decision (remove / update / keep); never silently delete a learning someone else added.
 
+## Worked Example: Entries Worth Keeping (and Not)
+
+A capture pass at the end of a session that debugged a flaky deploy:
+
+```markdown
+## Pitfalls
+- **staging-env-lazy-load**: Staging loads env vars lazily — a missing var
+  fails on first *request*, not at boot, so deploy "succeeds" then 500s.
+  Check `/healthz?deep=1` after every staging deploy. (confidence: 8/10,
+  added: 2026-08-29, files: [deploy/staging.yml])
+
+## Tooling
+- **worker-tests-need-runInBand**: The billing worker tests share a Redis
+  fixture; parallel runs corrupt it. Always `npm test -- --runInBand` under
+  services/billing/. (confidence: 9/10, added: 2026-08-29)
+```
+
+Both pass the tests: durable, non-obvious, would save 5+ minutes — the first one cost this session forty.
+
+**Rejected from the same session**, with reasons:
+- *"The deploy failed today because CI was down"* — transient, not durable
+- *"Billing service lives in services/billing/"* — derivable in seconds from the repo
+- *"Redis is used for queues"* — the README already says so
+- *"I used git bisect to find the commit"* — general technique, not a project fact
+
+One session, two entries. That ratio is the health signal: a knowledge base that grows by ten entries per session is capturing noise.
+
 ## Common Rationalizations
 
 | Excuse | Reality |

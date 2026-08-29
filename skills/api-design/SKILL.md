@@ -18,6 +18,8 @@ Design stable, well-documented interfaces that are hard to misuse. Good interfac
 - Establishing database schema that informs API shape
 - Changing existing public interfaces
 
+**When NOT to use:** Designing agent-facing tool surfaces (MCP) — layer `mcp-development` on top. Database schema itself — `database`. Deprecating an existing API — `modernization`.
+
 ## Core Principles
 
 ### Hyrum's Law
@@ -320,6 +322,10 @@ type UserId = string & { readonly __brand: 'UserId' };
 // Prevents accidentally passing a UserId where a TaskId is expected
 function getTask(id: TaskId): Promise<Task> { ... }
 ```
+
+## Agent-Facing APIs
+
+When the API's consumer is an agent rather than a human developer — MCP servers, tool surfaces — the design instincts invert (descriptions become prompts, errors must steer, context is a budget): apply `mcp-development` on top of the fundamentals here.
 
 ## Common Rationalizations
 

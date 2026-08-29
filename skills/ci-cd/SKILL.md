@@ -22,6 +22,8 @@ Automate quality gates so that no change reaches production without passing test
 - When a change should trigger automated verification
 - Debugging CI failures
 
+**When NOT to use:** Deciding *what* to verify — that is `standards` and `tdd`; this skill automates the gates they define. Deploy-time strategy and rollback — `release`.
+
 ## The Quality Gate Pipeline
 
 Every change goes through these gates before merge:
@@ -357,6 +359,10 @@ jobs:
       - run: npm ci
       - run: npm test -- --coverage
 ```
+
+## Hand-offs
+
+Pipeline quality gates should run the same commands as the project's health stack (`code-health`) so local and CI never disagree; the deploy stages implement `release`'s staged-rollout strategy, and `canary-watch` covers the post-deploy window.
 
 ## Common Rationalizations
 

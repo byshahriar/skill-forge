@@ -77,6 +77,41 @@ Split **vertically** (each slice crosses the whole stack and delivers value) —
 5. Mark what the epic is explicitly **not** doing (feeds the Not Doing list)
 6. Hand to `estimation`
 
+## Worked Example: Fixing a Broken Story
+
+**Before** (fails I, V, and T):
+
+> As a user, I want the backend API for notifications, so that notifications work.
+
+Persona is nobody, the slice is horizontal (API with no user-visible value), and "notifications work" is untestable.
+
+**After** — resliced vertically and grounded:
+
+```
+Title: Get an email when a teammate comments on my document
+
+As a document owner collaborating with reviewers,
+I want an email when someone comments on a document I own,
+so that I don't discover feedback three days late.
+
+Acceptance Criteria:
+1. Given I own a doc, when a teammate comments, then I receive an email
+   within 5 minutes containing the comment text and a deep link.
+2. Given I commented on my own doc, when the comment posts, then no email
+   is sent to me.
+3. Given my notification setting is "off", when anyone comments, then no
+   email is sent — and the setting page shows this state.
+4. Given the email provider is down, when a comment posts, then the comment
+   still saves, and the notification is retried (comment success never
+   depends on email success).
+
+Notes: in-app notifications are a separate story; digest batching is Not Doing (v1).
+```
+
+Criterion 4 is the one teams skip — the failure-path criterion that decides an architectural fact (comment write must not couple to email delivery). One line in the story just prevented a production incident.
+
+**Epic split** for "Notifications v1", by workflow step and data variation — each slice shippable alone: ① email on comment (above) → ② email on mention → ③ in-app notification center, read/unread → ④ per-event-type settings page → ⑤ daily digest option. Story ① alone proves the pipeline end to end.
+
 ## Common Rationalizations
 
 | Excuse | Reality |

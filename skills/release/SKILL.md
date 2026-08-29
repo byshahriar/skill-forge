@@ -18,6 +18,8 @@ Ship with confidence. The goal is not just to deploy — it's to deploy safely, 
 - Opening a beta or early access program
 - Any deployment that carries risk (all of them)
 
+**When NOT to use:** A deploy already out and being watched — `canary-watch`. A live outage — `incident-response`. Pipeline construction itself — `ci-cd`.
+
 ## The Pre-Launch Checklist
 
 ### Code Quality
@@ -301,7 +303,7 @@ BEFORE pushing or opening a PR:
 If any item fails → fix it. There is no "push now, fix in a follow-up" for a red gate.
 ```
 
-A ship isn't done at push — it's done when the remote pipeline is green and the rollback path is real.
+A ship isn't done at push — it's done when the remote pipeline is green and the rollback path is real. For production deploys, hand the watch to `canary-watch` immediately after.
 
 ## Common Rationalizations
 

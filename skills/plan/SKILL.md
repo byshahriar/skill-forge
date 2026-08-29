@@ -239,6 +239,10 @@ That means each task carries:
 
 Acceptance criteria are per-task and answer "did we build the right thing?". They sit on top of the project-wide Definition of Done, the standing bar every task clears before it counts as done. See `references/definition-of-done.md`.
 
+## Hand-offs
+
+Plan stands alone, and chains when grouped: upstream, a spec from `specify` (or a design doc from `discovery`) sharpens every task; downstream, significant plans earn `eng-review`/`ceo-review` before execution, sized via `estimation` when sprint-planning is in play, and execute via `implement` (or `multi-agent` subagent-driven execution for independent tasks).
+
 ## Common Rationalizations
 
 | Rationalization | Reality |

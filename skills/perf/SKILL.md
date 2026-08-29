@@ -439,6 +439,10 @@ npx bundlesize --config bundlesize.config.json
 npx lhci autorun
 ```
 
+## Database Performance
+
+Query-level work — plan reading, index strategy, N+1 elimination, keyset pagination — lives in `database`, which also owns the schema and migration mechanics behind those queries. Measure here first (this skill decides *whether* the database is the bottleneck), then optimize there.
+
 ## Regression Benchmarking
 
 Optimization proves a delta; benchmarking catches the slow leak. Keep a baseline and compare against it:

@@ -18,6 +18,8 @@ Feed agents the right information at the right time. Context is the single bigge
 - Setting up a new project for AI-assisted development
 - The agent is not following project conventions
 
+**When NOT to use:** Researching an unfamiliar external domain — `research`. Reading this codebase to understand it — `code-research`. Durable cross-session learnings — `knowledge-base`.
+
 ## The Context Hierarchy
 
 Structure context from most persistent to most transient:

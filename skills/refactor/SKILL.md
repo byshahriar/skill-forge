@@ -295,6 +295,10 @@ function UserBadge({ user }: Props) {
 // This is a judgment call — flag it, don't auto-refactor.
 ```
 
+## Hand-offs
+
+Behavior preservation is proven by tests staying green throughout (`tdd` discipline); the finished simplification lands through `code-review` like any change.
+
 ## Common Rationalizations
 
 | Rationalization | Reality |

@@ -64,6 +64,20 @@ Activate careful + edit boundary together. Announce both protections and their l
 
 > **Guard mode active.** 1) Destructive commands warn before executing (catastrophic shapes refused). 2) Edits restricted to `<path>/`. Say "unfreeze" to lift the boundary; end the session to deactivate everything.
 
+## Worked Example: A Guarded Session
+
+User: *"Guard mode on — we're debugging the billing worker on prod data. Restrict edits to `services/billing/`."*
+
+> **Guard mode active.** 1) Destructive commands warn before executing; recursive delete of `/`/`~` and force-push to `main` are refused outright. 2) Edits restricted to `services/billing/`. Say "unfreeze" to lift the boundary.
+
+Mid-session, three moments the mode exists for:
+
+1. Investigation suggests clearing a stale queue: `redis-cli FLUSHDB`. **Careful mode intercepts**: "This wipes every key in the current Redis DB on what appears to be production — including live rate-limit counters and sessions, not just the stale queue. Confirm, or I can delete the three `billing:retry:*` keys specifically." User picks the targeted delete. The guardrail's value wasn't blocking — it was naming the real blast radius before the yes.
+2. The root cause turns out to be in `lib/currency.ts` — outside the boundary. **Refused, then asked**: "Fix is one line in `lib/currency.ts`, outside the edit boundary. Widen the boundary to include `lib/`, or note it for a follow-up?" User widens for that one file. The scope change happened *out loud*.
+3. A cleanup instinct: `sed -i` a rename across `services/`. Also refused — a shell write is still a write; the boundary is about changes, not tool names.
+
+Session ends; boundary dies with it. Nothing was prevented that the user wanted — three things were prevented that they didn't.
+
 ## Common Rationalizations
 
 | Excuse | Reality |

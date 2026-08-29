@@ -20,11 +20,14 @@ Multi-dimensional code review with quality gates. Every change gets reviewed bef
 - When refactoring existing code
 - After any bug fix (review both the fix and the regression test)
 
+**When NOT to use:** Reviewing a *plan* before code exists — use `eng-review` (rigor) or `ceo-review` (scope). Auditing a whole codebase for vulnerabilities — `security` CSO mode. Live UI critique — `design-qa`.
+
 ## Pre-Landing Structural Pass
 
-Before the five-axis review, three cheap structural checks on the diff itself:
+Before the five-axis review, four cheap structural checks on the diff itself:
 
-- **Scope-drift detection** — compare the diff against the branch's stated purpose (PR title, linked issue, plan). Changes unrelated to the purpose get flagged: split them out or justify them explicitly. Drive-by fixes hide in big diffs and dodge review.
+- **Scope-drift detection with surgical traceability** — every changed file and every new public surface must trace back to the branch's stated purpose (PR title, linked issue, plan) in one sentence. Unrelated changes get flagged: split them out or justify explicitly — drive-by fixes hide in big diffs and dodge review. For each **new knob** (setting, flag, env var, command, service): who will change this, and why can't one correct default serve them? No evidenced user split = the knob is drift; fix the default path instead. Watch for "cleanup" changes that quietly add user-visible behavior, config surface, or workflow permissions.
+- **Pattern-fix completeness** — when the diff fixes one instance of a class-of-bug (missing validation, wrong selector, off-by-one, missing lock), the same shape usually lives elsewhere. Extract the pattern signature, `grep -rn` it across the repo (excluding generated dirs), and confirm siblings were handled. An unswept sibling with the same risk blocks; lower-risk siblings are advisory — but listed, never silently left.
 - **Slop scan** — AI-generated tells: dead abstractions nothing calls, comments narrating the obvious, defensive try/catch that swallows errors, duplicated helpers that exist elsewhere, `any`-typed escape hatches. Advisory, but tag each instance.
 - **Trust-boundary and side-effect checks** — SQL built by string interpolation, external/LLM output flowing into privileged operations without validation, and side effects inside conditionals (`if save_and_notify(x):`) where a short-circuit silently skips them.
 
@@ -381,11 +384,6 @@ The response pattern:
 **Push back when the feedback is wrong** — with technical reasoning: it breaks existing functionality, the reviewer lacks context the code depends on, it's incorrect for this stack, or it adds an unused "proper" feature (grep for actual usage first — if nothing calls it, propose removal over polish). If you can't verify a claim cheaply, say exactly that and ask how to proceed. If external feedback conflicts with a decision the user already made, that goes to the user — not silently either way.
 
 
-## See Also
-
-- For detailed security review guidance, see `references/security-checklist.md`
-- For performance review checks, see `references/performance-checklist.md`
-
 ## The Approval Gate
 
 Before declaring a review complete or approving a change:
@@ -400,6 +398,12 @@ BEFORE approving:
 ```
 
 An approval is a co-signature. "LGTM" on code you didn't read makes its bugs partly yours.
+
+
+## See Also
+
+- For detailed security review guidance, see `references/security-checklist.md`
+- For performance review checks, see `references/performance-checklist.md`
 
 ## Common Rationalizations
 

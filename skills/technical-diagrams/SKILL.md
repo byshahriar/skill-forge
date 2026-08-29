@@ -59,6 +59,82 @@ For hand-editable output, the mermaid source opens in mermaid.live and most diag
 3. Note the edit loop: "the `.mmd` is the source of truth — ask for changes and I re-render, or edit it in mermaid.live yourself"
 4. If the diagram documents code, place it near the code it documents (README section, doc page, or a comment block) — and treat **diagram maintenance as part of any future change to that flow**. Stale diagrams are worse than none.
 
+## Worked Examples
+
+**Request flow with failure paths** (the most common architecture diagram — note the labeled edges and the error path as a first-class branch):
+
+````markdown
+```mermaid
+flowchart LR
+    client[Client] -->|POST /orders| api[API Gateway]
+    api -->|validate JWT| auth[Auth Service]
+    auth -.->|401 invalid| client
+    api -->|create| orders[Order Service]
+    orders -->|reserve stock| inv[(Inventory DB)]
+    inv -.->|out of stock| orders
+    orders -.->|409 conflict| client
+    orders -->|publish OrderCreated| queue[[Event Queue]]
+    queue --> email[Email Worker]
+    orders -->|201 Created| client
+```
+````
+
+Dashed edges mark failure paths; `[(…)]` is a datastore, `[[…]]` a queue. A reader learns the happy path *and* the two ways it fails without reading prose.
+
+**State machine** — when a lifecycle has named states, this beats any paragraph:
+
+````markdown
+```mermaid
+stateDiagram-v2
+    [*] --> pending: submit
+    pending --> processing: worker picks up
+    processing --> complete: success
+    processing --> failed: error
+    failed --> pending: retry (max 3)
+    failed --> dead_letter: retries exhausted
+    complete --> [*]
+    dead_letter --> [*]
+```
+````
+
+**Sequence** — for interactions where *ordering* is the point:
+
+````markdown
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as App
+    participant S as Stripe
+    U->>A: Submit payment
+    A->>S: Create intent (idempotency key)
+    S-->>A: requires_action
+    A-->>U: 3DS challenge
+    U->>S: Complete challenge
+    S->>A: webhook: succeeded
+    A->>A: Mark order paid (idempotent)
+    A-->>U: Confirmation
+```
+````
+
+**ASCII fallback** for code comments and terminals, where mermaid can't render:
+
+```
+  ingest ──▶ validate ──▶ transform ──┬──▶ store (primary)
+                 │                     └──▶ index (async, best-effort)
+                 └──▶ quarantine (schema violations)
+```
+
+## Reference
+
+| Need | Syntax |
+|---|---|
+| Left-to-right flow | `flowchart LR` |
+| Top-down hierarchy | `flowchart TD` |
+| Datastore / queue / decision | `[(db)]` · `[[queue]]` · `{choice?}` |
+| Failure or async edge | `-.->|reason|` |
+| Grouping | `subgraph Name … end` |
+| Labeled edge | `A -->|does what| B` |
+
 ## Common Rationalizations
 
 | Excuse | Reality |

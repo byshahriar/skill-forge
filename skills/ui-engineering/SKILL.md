@@ -18,6 +18,8 @@ Build production-quality user interfaces that are accessible, performant, and vi
 - Adding interactivity or state management
 - Fixing visual or UX issues
 
+**When NOT to use:** Choosing the visual direction or design system — `design-system` / `design-concepts`. Auditing a built UI — `design-qa`. Functional browser testing — `web-qa`.
+
 ## Component Architecture
 
 ### File Structure
@@ -296,6 +298,10 @@ function useToggleTask() {
 ## See Also
 
 For detailed accessibility requirements and testing tools, see `references/accessibility-checklist.md`.
+
+## Hand-offs
+
+Works alone; stronger grouped: read the project's DESIGN.md (create one via `design-system` if visual decisions keep being improvised), explore contested directions via `design-concepts`, and verify the built result with `design-qa` (visual) and `web-qa` (functional).
 
 ## Common Rationalizations
 

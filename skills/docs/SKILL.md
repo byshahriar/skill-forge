@@ -1,6 +1,6 @@
 ---
 name: docs
-description: Records decisions and documentation. Use when making architectural decisions, changing public APIs, shipping features, or when you need to record context that future engineers and agents will need to understand the codebase.
+description: Records decisions and documentation, and keeps prose sounding human. Use when making architectural decisions, changing public APIs, shipping features, when recording context future engineers and agents will need, or when a README, release note, or announcement needs writing or de-AI polishing.
 license: MIT
 ---
 
@@ -274,6 +274,25 @@ Shipping changes documentation debt. After a release:
 - Update the changelog entry into human-facing release notes if the project publishes them
 - Kill stale content on sight: a doc describing removed behavior is a live trap, delete or fix it in the same pass
 - Check code-comment diagrams near the changed flows — stale diagrams are worse than none
+
+## Prose Quality
+
+Docs fail as often on prose as on structure. The discipline is a **catalog of smells, not a find-and-replace list** — recognize generated-text taste, then make judgment calls:
+
+- **Over-editing is failure, equal to under-editing.** A sentence that's already natural and clear stays. Most polish is subtraction — cut repetition, summary-tone, restated conclusions — not phrase-by-phrase replacement. Three edits that matter beat thirty mechanical swaps that flatten the voice.
+- **A piece has a speaker.** The test isn't "any banned words" but "can I tell who's talking?" Prose that reads smooth but could have been written by anyone has failed — unattributable fluency is the defect. Keep the sentences only this team would write; cut the ones anyone would.
+- **The material gate.** Before drafting long-form, count what you actually hold: real numbers, real behavior, quotes, verifiable sources. A category name is not material, and a restated idea is not a second material. If you can't name distinct material for each planned section, the plan is longer than the evidence — research more, ask, or write shorter.
+- **Artifact-grounded claims.** README paragraphs, release notes, and announcements state facts grounded in the current artifact — actual behavior, actual changelog — never plans or stale memory presented as product truth, and never concrete evidence diluted into generic marketing language.
+- **Interface copy rules** (for docs describing UI, and UI text itself): name things by what users control, not how the system is built ("manage notifications", not "webhook config"); active voice; a control says exactly what happens ("Save changes", not "Submit"); an action keeps its name through the whole flow; errors explain what went wrong and how to fix it, never apologize vaguely; an empty state is an invitation to act.
+
+## Reader Testing
+
+Docs are code that runs on readers — so test them on one:
+
+1. **Predict reader questions.** Before calling a doc done, list the 5–8 questions its intended reader will ask ("how do I authenticate?", "what happens if X fails?").
+2. **Cold-read test.** Give the doc to a fresh reader with no context — a subagent works: "Read this document. Answer these questions using only the document. Note where you got stuck or had to guess." A fresh agent is the perfect proxy for a new team member: zero shared context, no politeness.
+3. **Check the mechanical failures too:** every command actually runs, every link resolves, no leftover placeholders (`TODO`, `[TBD]`, lorem), prerequisite steps appear before the steps that need them.
+4. **Fix and re-test.** Where the cold reader stumbled is where the doc lies or gaps — fix the doc, not the reader. Exit when a cold read answers the predicted questions without guessing.
 
 ## Common Rationalizations
 

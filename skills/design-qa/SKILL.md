@@ -55,7 +55,7 @@ Apply the checklist per page. Every finding gets a category and an impact rating
 
 **8. Content & Microcopy** — headings say something specific · no happy talk · buttons name the action ("Save changes", not "Submit") · consistent terminology
 
-**9. AI Slop Detection** — the blacklist; each hit is automatic HIGH:
+**9. AI Slop Detection** — the blacklist; each hit is automatic HIGH (for the palette-level default looks — cream+serif+terracotta, near-black+acid-accent, broadsheet hairlines — see `design-system`'s Anti-Default Calibration):
 - Purple/violet gradient backgrounds or blue-to-purple schemes
 - The 3-column feature grid: icon-in-colored-circle + bold title + 2-line description ×3 — THE most recognizable AI layout
 - Icons in colored circles as decoration; decorative blobs, wavy dividers

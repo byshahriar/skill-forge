@@ -22,6 +22,8 @@ Code you can't observe is code you can't operate. Observability is the ability t
 - Diagnosing a failure happening right now — use the `debug` skill (observability is what makes that skill fast next time)
 - Profiling and optimizing measured slowness — use the `perf` skill
 - Launch-day monitoring checklists and rollback triggers — see the `release` skill; this skill covers the instrumentation that feeds them
+- An outage happening right now — `incident-response` runs the response; this skill decides what signals exist to run it with
+- Deciding failure *behavior* (timeouts, retries, breakers) — `resilience`; this skill makes that behavior visible
 
 ## Process
 

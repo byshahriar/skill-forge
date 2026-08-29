@@ -21,6 +21,8 @@ Most engineering organizations are good at building things. Few are good at remo
 - Planning the lifecycle of a new system (deprecation planning starts at design time)
 - Deciding whether to maintain a legacy system or invest in migration
 
+**When NOT to use:** Database schema migrations and backfills — `database` owns the data mechanics. Simplifying code you are keeping — `refactor`.
+
 ## Core Principles
 
 ### Code Is a Liability

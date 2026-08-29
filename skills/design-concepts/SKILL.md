@@ -65,6 +65,27 @@ Synthesize: winner + grafts + kills → one refined direction. Generate the refi
 - Record rejected directions and the reasons — taste memory for future sessions
 - Hand off to implementation (`ui-engineering`) with the winning variant as the visual spec
 
+## Worked Example: Three Directions for a Dev-Tool Landing Page
+
+Product: an open-source database migration tool. Brief: "landing page; devs should trust it instantly."
+
+```
+I'll explore 3 directions:
+A) "Terminal-native" — the page IS a terminal session: dark, monospace
+   (Berkeley Mono), the hero is a live-typed migration run with real output.
+   Palette: near-black, phosphor green used *only* for command output.
+B) "Field manual" — printed-manual aesthetic: cream paper, Fraunces serif
+   headings, numbered sections, engineering-drawing diagrams of the
+   expand/contract flow. Reads like documentation you'd trust with prod.
+C) "Control room" — data-dense dashboard look: IBM Plex Sans, grid of live
+   stats (migrations run, rollbacks, locks avoided), status-light accents.
+   The hero is the tool's own telemetry, shown honestly.
+```
+
+**Headline-swap test:** swap A's headline onto B — instantly wrong (a typed terminal command makes no sense on paper texture). A↔C share darkness, so check harder: different type families (mono vs Plex), different structure (single narrative column vs stat grid), different accent logic (output-only green vs status lights). Pass — three different design teams.
+
+**Structured feedback after the board:** Keep — A's live-typed hero ("that's the product, immediately"), B's expand/contract diagram. Kill — C entirely ("looks like we're selling observability"), B's cream background ("too gentle for a tool that touches prod"). **Steal** — B's diagram and numbered-section structure, grafted into A. Round 2: A's terminal world with B's engineering-manual structure inside it. Approved. The winner existed in nobody's head before the board — that's the shotgun working.
+
 ## Common Rationalizations
 
 | Excuse | Reality |
