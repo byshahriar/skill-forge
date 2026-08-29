@@ -12,7 +12,7 @@
  * - every skill directory appears in README.md's skill tables
  * - every skill (except orchestrator itself) is routed in skills/orchestrator/SKILL.md
  * - skill-count claims in README/AGENTS.md/plugin manifests match the real count
- * - every commands/*.toml references only existing skills
+ * - every commands/*.md references only existing skills
  * - no cross-skill reference names a skill that doesn't exist
  *
  * Usage:
@@ -106,7 +106,7 @@ for (const f of COUNT_FILES) {
 
 const cmdDir = path.join(ROOT, 'commands');
 if (fs.existsSync(cmdDir)) {
-  for (const f of fs.readdirSync(cmdDir).filter((x) => x.endsWith('.toml'))) {
+  for (const f of fs.readdirSync(cmdDir).filter((x) => x.endsWith('.md'))) {
     const text = read(path.join(cmdDir, f));
     for (const m of text.matchAll(/\bthe ([a-z][a-z0-9-]+) skill\b/g)) {
       if (!skills.includes(m[1])) {

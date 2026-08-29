@@ -169,6 +169,9 @@ The repo ships agent-facing entry points for each: [AGENTS.md](AGENTS.md) (Codex
 | `/stuck` | problem-solving | Dispatch the right unstucking technique |
 | `/incident` | incident-response | Production incident — triage, mitigate, comms, postmortem |
 
+
+> **Skills vs commands:** the `skills` CLI installs *skills* only — that's the Agent Skills spec's scope, and skills auto-trigger from their descriptions, so nothing is lost when installing that way. The slash commands ship through the **Claude Code plugin** install (`commands/*.md`); on other agents, invoke skills by name in chat or wire your agent's own command mechanism (see the per-agent setup docs).
+
 ## Skill Anatomy
 
 Every skill is one directory with one required file:

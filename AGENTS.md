@@ -58,7 +58,7 @@ Never report DONE while any checklist item in the skill's Verification section i
 
 ```
 skills/<name>/SKILL.md      # 53 skills, one dir each, self-contained
-commands/*.toml             # 19 slash commands
+commands/*.md               # 19 slash commands (Claude Code plugin format)
 references/                 # shared checklists (also vendored per-skill where used)
 scripts/validate-skills.js  # per-skill lint — run before committing skill changes
 scripts/validate-docs.js    # repo consistency: README/orchestrator/counts/commands

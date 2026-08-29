@@ -1,7 +1,7 @@
-description = "Systematic browser QA sweep — test, fix, verify"
+---
+description: Systematic browser QA sweep — test, fix, verify
+---
 
-prompt = """
 Invoke the web-qa skill.
 
 Run the QA sweep over the running app: plan the page/flow list, baseline pass with screenshots and console capture, triage findings, then the fix loop with re-testing and regression tests. Ask up front whether to fix or report-only.
-"""

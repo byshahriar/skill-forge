@@ -1,7 +1,7 @@
-description = "Security review — threat model, OWASP pass, or full CSO audit"
+---
+description: Security review — threat model, OWASP pass, or full CSO audit
+---
 
-prompt = """
 Invoke the security skill.
 
 For a change: threat-model it and run the relevant OWASP prevention patterns. For an audit request: run CSO mode — architecture model, attack-surface census, category sweeps, active verification of findings, severity x confidence report with remediations.
-"""

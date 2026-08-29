@@ -1,7 +1,7 @@
-description = "Review the current changes before merge"
+---
+description: Review the current changes before merge
+---
 
-prompt = """
 Invoke the code-review skill.
 
 Run the pre-landing structural pass (scope drift, slop scan, trust boundaries), then the five-axis review — correctness, readability, architecture, security, performance — on the current diff. Classify findings AUTO-FIX / ASK / NOTE, fix the mechanical ones, and present the decisions with file:line references.
-"""

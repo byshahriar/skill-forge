@@ -23,6 +23,10 @@ npx skills add byshahriar/skill-forge --skill tdd  # one skill, self-contained
 
 The CLI targets 70+ agents (Claude Code, Cursor, Codex, Copilot, Cline, …) and asks which to install into. Per-agent notes: [cursor-setup.md](cursor-setup.md) · [codex-setup.md](codex-setup.md) · [copilot-setup.md](copilot-setup.md).
 
+## What the CLI does not install
+
+The `skills` CLI implements the Agent Skills spec, which covers skills only. This repo's slash commands (`commands/*.md`), like any plugin-level artifact, install through the Claude Code plugin route instead - and are optional everywhere else, since every skill auto-triggers from its description.
+
 ## Publishing checklist
 
 Before pushing a release:
