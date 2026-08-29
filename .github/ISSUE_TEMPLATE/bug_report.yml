@@ -1,0 +1,33 @@
+name: Bug report
+description: A skill gives wrong guidance, a validator misfires, or docs are inconsistent
+title: "[bug] "
+labels: [bug]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - A skill's content (wrong or harmful guidance)
+        - Validators / CI
+        - Docs / README
+        - Install (skills CLI / plugin)
+    validations:
+      required: true
+  - type: input
+    id: skill
+    attributes:
+      label: Skill name (if applicable)
+      placeholder: e.g. tdd, code-review
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What did the skill/tool do, and what should it have done?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce
+      description: The prompt/scenario that triggers it, or the command and its output.

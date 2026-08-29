@@ -2,6 +2,11 @@ MIT License
 
 Copyright (c) 2026 Shahriar Shabbir
 
+Portions adapted from MIT-licensed works:
+  Copyright (c) 2025 Addy Osmani (agent-skills)
+  Copyright (c) 2026 Garry Tan (gstack)
+  Copyright (c) 2025 Jesse Vincent (superpowers, superpowers-skills)
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights

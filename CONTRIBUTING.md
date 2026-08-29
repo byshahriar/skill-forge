@@ -22,4 +22,4 @@
 
 ## Provenance
 
-New skills note any sources or prior art in the PR description; substantial external references belong in the README.
+New skills note any sources or prior art in the PR description (the PR template has a Sources field); substantial external references belong in the README's References & Acknowledgments section.

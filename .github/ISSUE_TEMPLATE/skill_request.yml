@@ -1,0 +1,32 @@
+name: New skill request
+description: Propose a skill that doesn't exist yet
+title: "[skill] "
+labels: [new-skill]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Proposed name
+      description: Short, industry-standard, kebab-case (see CONTRIBUTING).
+      placeholder: e.g. incident-response
+    validations:
+      required: true
+  - type: textarea
+    id: triggers
+    attributes:
+      label: When would an agent use it?
+      description: The trigger conditions — the future description field.
+    validations:
+      required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: Why isn't this covered?
+      description: Which existing skills come close, and what's missing?
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: The method
+      description: The workflow/discipline the skill would teach — bullet points are fine.

@@ -168,6 +168,22 @@ skills/<name>/
 
 Standard sections: Overview · When to Use · workflow · Common Rationalizations · Red Flags · Verification. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contract; `node scripts/validate-skills.js` enforces it in CI.
 
+## References & Acknowledgments
+
+Skill Forge stands on the shoulders of the agent-skills ecosystem. These projects shaped its content, conventions, and tooling — several skills adapt material from the MIT-licensed packs among them:
+
+| Project | What it contributed |
+|---|---|
+| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | The skill anatomy (frontmatter contract, rationalization tables, verification checklists) and the engineering-discipline core several Build/Review/Ship skills adapt |
+| [garrytan/gstack](https://github.com/garrytan/gstack) | The persona plan-review methodology (CEO/eng/design/DX), discovery diagnostics, design taste, ship mechanics, and safety guardrails several skills distill |
+| [obra/superpowers](https://github.com/obra/superpowers) | The iron-law discipline patterns — strict TDD gates, four-phase debugging, verification-before-completion — and TDD-for-process-docs skill authoring |
+| [obra/superpowers-skills](https://github.com/obra/superpowers-skills) | The problem-solving technique library (inversion, collision-zone, scale game) and testing anti-patterns |
+| [anthropics/skills](https://github.com/anthropics/skills) | The Agent Skills format and reference implementations |
+| [vercel-labs/skills](https://github.com/vercel-labs/skills) | The open `skills` CLI and the skills.sh registry this repo targets |
+| [tw93/Waza](https://github.com/tw93/Waza) | Inspiration for turning engineering habits into runnable skills |
+
+Thanks to Addy Osmani, Garry Tan, Jesse Vincent, and every contributor to the projects above.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

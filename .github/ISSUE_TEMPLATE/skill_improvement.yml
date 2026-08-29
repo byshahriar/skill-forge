@@ -1,0 +1,23 @@
+name: Skill improvement
+description: An existing skill has a gap, loophole, or missing technique
+title: "[improve] "
+labels: [enhancement]
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill
+      placeholder: e.g. debug
+    validations:
+      required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: The gap or loophole
+      description: What does the skill miss, get wrong, or let an agent rationalize around? Verbatim rationalizations are gold.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change

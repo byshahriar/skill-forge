@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question / discussion
+    url: https://github.com/byshahriar/skill-forge/discussions
+    about: For questions about using the skills, open a discussion instead of an issue.
