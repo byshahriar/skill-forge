@@ -4,14 +4,27 @@
 
 Skill Forge gives your agent the workflows, quality gates, and judgment that senior engineers apply at every phase of building software: validating ideas before building, specifying before coding, reviewing plans from four expert perspectives, implementing test-first, auditing design and security, and shipping with rollback discipline. Every skill is portable, self-contained, and written in one consistent anatomy.
 
-```
- DISCOVER        DEFINE         PLAN            BUILD          VERIFY         SHIP
-┌─────────┐   ┌─────────┐   ┌───────────┐   ┌─────────┐   ┌──────────┐   ┌────────────┐
-│discovery│──▶│ specify │──▶│plan+agile │──▶│implement│──▶│debug/qa/ │──▶│  release   │
-│ (worth  │   │ (exact  │   │+ 4 persona│   │  (tdd)  │   │code-rev/ │   │+ canary-   │
-│building?)   │  what)  │   │  reviews  │   │         │   │ security │   │  watch     │
-└─────────┘   └─────────┘   └───────────┘   └─────────┘   └──────────┘   └────────────┘
-  /spec          /plan        /review          /build        /test /qa       /ship
+```mermaid
+flowchart LR
+    subgraph S1[DISCOVER]
+        discovery["discovery<br/><i>worth building?</i>"]
+    end
+    subgraph S2[DEFINE]
+        specify["specify<br/><i>exactly what</i><br/>/spec"]
+    end
+    subgraph S3[PLAN]
+        plan["plan + agile<br/><i>4 persona reviews</i><br/>/plan"]
+    end
+    subgraph S4[BUILD]
+        implement["implement<br/><i>tdd</i><br/>/build · /test"]
+    end
+    subgraph S5[VERIFY]
+        verify["debug · web-qa<br/>code-review · security<br/>/qa · /review"]
+    end
+    subgraph S6[SHIP]
+        release["release<br/><i>+ canary-watch</i><br/>/ship"]
+    end
+    discovery --> specify --> plan --> implement --> verify --> release
 ```
 
 ## Quick Start
