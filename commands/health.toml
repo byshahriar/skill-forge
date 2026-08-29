@@ -1,0 +1,7 @@
+description = "Code + agent-environment health dashboard with scores and trends"
+
+prompt = """
+Invoke the code-health skill.
+
+Detect or read the project's health stack, run every tool (skipped ≠ failed), score per the rubric, and present the weighted dashboard with evidence and trend vs history. Include the agent-environment lane (instruction drift, verifier surfaces, hooks/MCP liveness) when agent config exists. Report-only: recommend fixes, don't apply them unasked.
+"""
